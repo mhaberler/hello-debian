@@ -287,17 +287,8 @@ This builds into a temp directory and removes it after the build.  In order to
 upload the results, use `dput` in the post build step assuming jenkins has a
 `dput` configuration for `local` created.
 
-```
-sources=$(mktemp -d)
-trap 'rm -rf $sources' EXIT
-git-buildpackage -uc -us \
-  --git-ignore-new \
-  --git-ignore-branch \
-  --git-export-dir=${sources} \
-  --git-export=${GIT_BRANCH} \
-  --git-force-create \
-  --git-cleaner='git clean -dfx' \
-  --git-builder='sbuild -v --dist=wheezy --post-build-commands "dput -p local %SBUILD_CHANGES"'
-```
+``````
+
+
 
 
